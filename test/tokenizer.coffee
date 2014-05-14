@@ -2,7 +2,7 @@ _ = require 'lodash'
 fs = require 'fs'
 path = require 'path'
 should = require 'should'
-{Tokenizer} = require '../src/tokenizer'
+Tokenizer = require '../src/tokenizer'
 
 Tokenizer = new Tokenizer()
 
