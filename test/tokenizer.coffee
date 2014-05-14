@@ -1,10 +1,15 @@
+_ = require 'lodash'
 fs = require 'fs'
+path = require 'path'
 should = require 'should'
 {Tokenizer} = require '../src/tokenizer'
 
 Tokenizer = new Tokenizer()
 
-tokenize = (data) ->
+tokenize = (data, type = 'string') ->
+  if type is 'file'
+    data = fs.readFileSync(path.join(__dirname, '../samples', data))
+
   Tokenizer.tokenize(data)
 
 describe 'Tokenizer', ->
@@ -59,7 +64,7 @@ describe 'Tokenizer', ->
     tokenize("1 << 0x01").should.eql ['<<']
 
   it 'should tokenize C tokens', ->
-    tokenize(:"C/hello.h").should.eql "#ifndef HELLO_H #define HELLO_H void hello \( \) ; #endif".split(' ')
+    tokenize('C/hello.h', 'file').should.eql "#ifndef HELLO_H #define HELLO_H void hello \( \) ; #endif".split(' ')
 
 
 
