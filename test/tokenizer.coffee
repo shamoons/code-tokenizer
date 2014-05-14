@@ -1,3 +1,4 @@
+fs = require 'fs'
 should = require 'should'
 {Tokenizer} = require '../src/tokenizer'
 
@@ -56,3 +57,9 @@ describe 'Tokenizer', ->
     tokenize("1 || 1").should.eql ['||']
     tokenize("1 < 0x01").should.eql ['<']
     tokenize("1 << 0x01").should.eql ['<<']
+
+  it 'should tokenize C tokens', ->
+    tokenize(:"C/hello.h").should.eql "#ifndef HELLO_H #define HELLO_H void hello \( \) ; #endif".split(' ')
+
+
+
