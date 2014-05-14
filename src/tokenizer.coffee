@@ -48,7 +48,7 @@ class Tokenizer
       console.log s
       console.log s.scan(/^#!.+$/, 'm')
 
-      if token = s.scan(/^#!.+$/)
+      if token = s.scan(/^#!.+$/m)
         if name = extract_shebang(token)
           tokens.push "SHEBANG#!#{name}"
 
@@ -101,6 +101,23 @@ class Tokenizer
         s.scanChar()
 
     tokens
+
+  extract_shebang = (data) ->
+    s = new StringScanner data
+
+    if scriptPath = s.scan(/^#!\s*\S+/)
+      script = _.last scriptPath.split('/')
+      console.log scriptPath
+      console.log script
+      if script is 'env'
+        s.scan(/\s+/)
+        script = s.scan(/\S+/)
+
+      console.log script
+      # if script
+        # script = script[/[^\d]+/, 0]
+
+      script
 
   extract_sgml_tokens = (data) ->
     s = new StringScanner data
