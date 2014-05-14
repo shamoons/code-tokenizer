@@ -45,12 +45,8 @@ class Tokenizer
     until s.hasTerminated()
       break if s.pos >= BYTE_LIMIT
 
-      console.log s
-      console.log s.scan(/^#!.+$/, 'm')
-
       if token = s.scan(/^#!.+$/m)
         if name = extract_shebang(token)
-          console.log "name", name
           tokens.push "SHEBANG#!#{name}"
 
       #Single line comment
@@ -108,15 +104,12 @@ class Tokenizer
 
     if scriptPath = s.scan(/^#!\s*\S+/)
       script = _.last scriptPath.split('/')
-      console.log scriptPath
-      console.log script
       if script is 'env'
         s.scan(/\s+/)
         script = s.scan(/\S+/)
 
-      console.log script
       if script
-        script = script.substring(/[^\d]+/, 0)
+        script = script.match(/[^\d]+/)
 
       script
     else
