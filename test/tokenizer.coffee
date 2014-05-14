@@ -67,4 +67,9 @@ describe 'Tokenizer', ->
     tokenize('C/hello.h', 'file').should.eql "#ifndef HELLO_H #define HELLO_H void hello \( \) ; #endif".split(' ')
     tokenize('C/hello.c', 'file').should.eql "#include <stdio.h> int main \( \) { printf \( \) ; return ; }".split(' ')
 
+  it 'should tokenize CPP tokens', ->
+    tokenize('C++/bar.h', 'file').should.eql "class Bar { protected char *name ; public void hello \( \) ; }".split(' ')
+    tokenize('C++/hello.cpp', 'file').should.eql "#include <iostream> using namespace std ; int main \( \) { cout << << endl ; }".split(' ')
+
+
 
