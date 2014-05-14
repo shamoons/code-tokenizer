@@ -1,6 +1,6 @@
 {
   "name": "code-tokenizer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A JS implementation of a tokenizer to split up source code based on tokens",
   "main": "lib/tokenizer.js",
   "directories": {
