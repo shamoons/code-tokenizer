@@ -1,6 +1,6 @@
 {
   "name": "code-tokenizer",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A JS implementation of a tokenizer to split up source code based on tokens",
   "main": "lib/tokenizer.js",
   "directories": {
@@ -20,7 +20,9 @@
     "tokenizer",
     "token",
     "source",
-    "code"
+    "code",
+    "regular expression",
+    "regex"
   ],
   "author": "Shamoon Siddiqui",
   "license": "GPL v2",

@@ -76,7 +76,19 @@ describe 'Tokenizer', ->
     tokenize("Objective-C/Foo.m", 'file').should.eql "#import @implementation Foo @end".split(' ')
     tokenize("Objective-C/hello.m", 'file').should.eql "#import <Cocoa/Cocoa.h> int main \( int argc char *argv [ ] \) { NSLog \( @ \) ; return ; }".split(' ')
 
-  it.only 'should extract shebangs', ->
+  it.skip 'should extract shebangs', ->
     tokenize('Shell/sh.script!', 'file')[0].should.eql 'SHEBANG#!sh'
+    tokenize("Shell/bash.script!", 'file')[0].should.eql 'SHEBANG#!bash'
+    tokenize("Shell/zsh.script!", 'file')[0].should.eql 'SHEBANG#!zsh'
+    tokenize("Perl/perl.script!", 'file')[0].should.eql 'SHEBANG#!perl'
+    tokenize("Python/python.script!", 'file')[0].should.eql 'SHEBANG#!python'
+    tokenize("Ruby/ruby.script!", 'file')[0].should.eql 'SHEBANG#!ruby'
+    tokenize("Ruby/ruby2.script!", 'file')[0].should.eql 'SHEBANG#!ruby'
+    tokenize("JavaScript/js.script!", 'file')[0].should.eql 'SHEBANG#!node'
+    tokenize("PHP/php.script!", 'file')[0].should.eql 'SHEBANG#!php'
+    tokenize("Erlang/factorial.script!", 'file')[0].should.eql 'SHEBANG#!escript'
+    tokenize("Shell/invalid-shebang.sh", 'file')[0].should.eql 'echo'
 
+  it.only 'should tokenize JavaScript tokens', ->
+    tokenize('JavaScript/hello.js', 'file').should.eql "( function \( \) { console.log \( \) ; } \) .call \( this \) ;".split(' ')
 
