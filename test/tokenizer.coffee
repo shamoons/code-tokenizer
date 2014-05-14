@@ -65,6 +65,6 @@ describe 'Tokenizer', ->
 
   it 'should tokenize C tokens', ->
     tokenize('C/hello.h', 'file').should.eql "#ifndef HELLO_H #define HELLO_H void hello \( \) ; #endif".split(' ')
-
+    tokenize('C/hello.c', 'file').should.eql "#include <stdio.h> int main \( \) { printf \( \) ; return ; }".split(' ')
 
 
