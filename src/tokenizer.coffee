@@ -50,6 +50,7 @@ class Tokenizer
 
       if token = s.scan(/^#!.+$/m)
         if name = extract_shebang(token)
+          console.log "name", name
           tokens.push "SHEBANG#!#{name}"
 
       #Single line comment
@@ -114,10 +115,12 @@ class Tokenizer
         script = s.scan(/\S+/)
 
       console.log script
-      # if script
-        # script = script[/[^\d]+/, 0]
+      if script
+        script = script.substring(/[^\d]+/, 0)
 
       script
+    else
+      null
 
   extract_sgml_tokens = (data) ->
     s = new StringScanner data
