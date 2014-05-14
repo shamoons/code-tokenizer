@@ -21,6 +21,12 @@ tokens = tokenize 'print "Josh"'
 tokens = tokenize 'path/to/file.html', 'file'
 # ['<div>', 'id', 'class', '</div>']
 
-``
+```
 
+# Uses
+This is based on the [Github Linguist](https://github.com/github/linguist) project. This node.js implementation strips any data strings or comments from the data and returns an array of language symbols.
 
+You can use this to do sanity checking of source code, parsing, detection, etc. This is a general purpose library and I'm always looking to hear how you're using it. Happy Coding!
+
+# Contact
+You can contact me [@shamoons](http://twitter.com/shamoons) or read up on my blog: http://shamoon.me
