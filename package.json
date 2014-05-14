@@ -1,0 +1,37 @@
+{
+  "name": "code-tokenizer",
+  "version": "0.0.8",
+  "description": "A JS implementation of a tokenizer to split up source code based on tokens",
+  "main": "lib/tokenizer.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha --compilers coffee:coffee-script/register -R spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/shamoons/code-tokenizer.git"
+  },
+  "keywords": [
+    "programming",
+    "language",
+    "tokenizer",
+    "token",
+    "source",
+    "code"
+  ],
+  "author": "Shamoon Siddiqui",
+  "license": "GPL v2",
+  "bugs": {
+    "url": "https://github.com/shamoons/code-tokenizer/issues"
+  },
+  "homepage": "https://github.com/shamoons/code-tokenizer",
+  "dependencies": {
+    "lodash": "~2.4.1"
+  },
+  "devDependencies": {
+    "should": "~3.3.1",
+    "mocha": "~1.18.2"
+  }
+}
