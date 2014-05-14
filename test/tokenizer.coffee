@@ -76,6 +76,7 @@ describe 'Tokenizer', ->
     tokenize("Objective-C/Foo.m", 'file').should.eql "#import @implementation Foo @end".split(' ')
     tokenize("Objective-C/hello.m", 'file').should.eql "#import <Cocoa/Cocoa.h> int main \( int argc char *argv [ ] \) { NSLog \( @ \) ; return ; }".split(' ')
 
-
+  it.only 'should extract shebangs', ->
+    tokenize('Shell/sh.script!', 'file').should.eql ['SHEBANG#!sh']
 
 

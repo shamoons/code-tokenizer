@@ -45,6 +45,9 @@ class Tokenizer
     until s.hasTerminated()
       break if s.pos >= BYTE_LIMIT
 
+      console.log s
+      console.log s.scan(/^#!.+$/, 'm')
+
       if token = s.scan(/^#!.+$/)
         if name = extract_shebang(token)
           tokens.push "SHEBANG#!#{name}"
