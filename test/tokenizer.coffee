@@ -76,7 +76,7 @@ describe 'Tokenizer', ->
     tokenize("Objective-C/Foo.m", 'file').should.eql "#import @implementation Foo @end".split(' ')
     tokenize("Objective-C/hello.m", 'file').should.eql "#import <Cocoa/Cocoa.h> int main \( int argc char *argv [ ] \) { NSLog \( @ \) ; return ; }".split(' ')
 
-  it.skip 'should extract shebangs', ->
+  it 'should extract shebangs', ->
     tokenize('Shell/sh.script!', 'file')[0].should.eql 'SHEBANG#!sh'
     tokenize("Shell/bash.script!", 'file')[0].should.eql 'SHEBANG#!bash'
     tokenize("Shell/zsh.script!", 'file')[0].should.eql 'SHEBANG#!zsh'
@@ -89,6 +89,16 @@ describe 'Tokenizer', ->
     tokenize("Erlang/factorial.script!", 'file')[0].should.eql 'SHEBANG#!escript'
     tokenize("Shell/invalid-shebang.sh", 'file')[0].should.eql 'echo'
 
-  it.only 'should tokenize JavaScript tokens', ->
+  it 'should tokenize JavaScript tokens', ->
     tokenize('JavaScript/hello.js', 'file').should.eql "( function \( \) { console.log \( \) ; } \) .call \( this \) ;".split(' ')
+
+  it 'should tokenize JSON tokens', ->
+    tokenize('JSON/product.json', 'file').should.eql "{ [ ] { } }".split(' ')
+
+  it 'should tokenize Ruby tokens', ->
+    tokenize('Ruby/foo.rb', 'file').should.eql ['module', 'Foo', 'end']
+    tokenize('Ruby/filenames/Rakefile', 'file').should.eql ['task', 'default', 'do', 'puts', 'end']
+
+
+
 
