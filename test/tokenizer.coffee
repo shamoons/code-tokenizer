@@ -71,5 +71,11 @@ describe 'Tokenizer', ->
     tokenize('C++/bar.h', 'file').should.eql "class Bar { protected char *name ; public void hello \( \) ; }".split(' ')
     tokenize('C++/hello.cpp', 'file').should.eql "#include <iostream> using namespace std ; int main \( \) { cout << << endl ; }".split(' ')
 
+  it 'should tokenize Objective-C tokens', ->
+    tokenize("Objective-C/Foo.h", 'file').should.eql "#import <Foundation/Foundation.h> @interface Foo NSObject { } @end".split(' ')
+    tokenize("Objective-C/Foo.m", 'file').should.eql "#import @implementation Foo @end".split(' ')
+    tokenize("Objective-C/hello.m", 'file').should.eql "#import <Cocoa/Cocoa.h> int main \( int argc char *argv [ ] \) { NSLog \( @ \) ; return ; }".split(' ')
+
+
 
 
