@@ -131,8 +131,6 @@ class Tokenizer
 
       else
         s.scanChar()
-      end
-    end
 
     tokens
 

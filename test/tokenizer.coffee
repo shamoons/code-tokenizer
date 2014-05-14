@@ -1,5 +1,5 @@
 should = require 'should'
-{Tokenizer} = require '../src/linguist/tokenizer'
+{Tokenizer} = require '../src/tokenizer'
 
 Tokenizer = new Tokenizer()
 
@@ -34,3 +34,12 @@ describe 'Tokenizer', ->
     tokenize("foo {- Comment -}").should.eql ['foo']
     tokenize("foo (* Comment *)").should.eql ['foo']
     tokenize("2 % 10\n% Comment").should.eql ['%']
+
+  it.only 'should tokenize SGML tags', ->
+    tokenize("<html></html>").should.eql ['<html>', '</html>']
+    tokenize("<div id></div>").should.eql ['<div>', 'id', '</div>']
+    tokenize("<div id=foo></div>").should.eql ['<div>', 'id=', "</div>"]
+    tokenize("<div id class></div>").should.eql ['<div>', 'id', 'class', '</div>']
+    tokenize("<div id=\"foo bar\"></div>").should.eql ['<div>', 'id=', "</div>"]
+    tokenize("<div id='foo bar'></div>").should.eql ['<div>', 'id=', "</div>"]
+    tokenize("<?xml version=\"1.0\"?>").should.eql ['<?xml>', 'version=']
