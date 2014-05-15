@@ -4,8 +4,6 @@ path = require 'path'
 should = require 'should'
 Tokenizer = require '../src/tokenizer'
 
-Tokenizer = new Tokenizer()
-
 tokenize = (data, type = 'string') ->
   if type is 'file'
     data = fs.readFileSync(path.join(__dirname, '../samples', data))

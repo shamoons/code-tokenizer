@@ -152,4 +152,4 @@ class Tokenizer
 
 
 
-module.exports = Tokenizer
+module.exports = new Tokenizer()
